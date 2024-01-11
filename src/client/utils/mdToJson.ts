@@ -1,23 +1,21 @@
-// https://github.com/vfile/vfile
-
 import { read } from 'to-vfile';
 import { matter } from 'vfile-matter';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import { Root } from 'mdast';
 
-export async function getMdDocument({
-  relativePath,
-}: {
-  relativePath: string;
-}): Promise<{
+export type File = {
   // File path
   file: string;
-  // Parsed data from frontmatter
-  data: any;
-  // Markdown body as AST format
-  body: Root;
-}> {
+  data: {
+    // Parsed data from frontmatter
+    matter: any;
+    // Markdown body as AST format
+    body: Root;
+  };
+};
+
+export async function mdToJson(relativePath: string): Promise<File> {
   const vfile = await read(relativePath);
   matter(vfile, { strip: false });
 
@@ -25,7 +23,9 @@ export async function getMdDocument({
 
   return {
     file: vfile.history[0],
-    data: vfile.data.matter,
-    body,
+    data: {
+      matter: vfile.data.matter,
+      body,
+    },
   };
 }
