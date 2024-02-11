@@ -1,8 +1,6 @@
-export { MdClient, type MdClientConfig } from './client/client';
-
-export type {
-  CollectionConfig,
-  Field,
-  FieldType,
-  Format,
-} from './client/collection';
+export * from './client';
+export type * from './fields/types';
+export type * from './types/File';
+export type * from './types/FileInfo';
+export type * from './config/types';
+export type * from './collections/types';
