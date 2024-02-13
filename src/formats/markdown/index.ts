@@ -1,9 +1,8 @@
 import { Format } from '../types';
-import { mdToJson } from './mdToJson';
+import { execute } from './execute';
 
 export const MdFormat: Format = {
   name: 'Markdown',
   extension: '.md',
-  convert: mdToJson,
-  execute: mdToJson,
+  execute: execute,
 };

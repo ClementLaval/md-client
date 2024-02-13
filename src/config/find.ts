@@ -5,14 +5,14 @@ import * as path from 'path';
 import { removeComments } from './utils/removeComments';
 
 /**
- * Returns the source and output paths from the nearest tsconfig.json file.
- * If no tsconfig.json file is found, returns the current working directory.
+ * Returns the source and output paths from the nearest tsconfig.jsonFile file.
+ * If no tsconfig.jsonFile file is found, returns the current working directory.
  */
 const getTSConfigPaths = async (): Promise<{
   outPath: string;
   srcPath: string;
 }> => {
-  const tsConfigPath = await findUp('tsconfig.json');
+  const tsConfigPath = await findUp('tsconfig.jsonFile');
 
   if (!tsConfigPath) {
     return { outPath: process.cwd(), srcPath: process.cwd() };
@@ -73,7 +73,7 @@ export const findConfig = async (): Promise<string> => {
     }
   }
 
-  // If no config file is found in the directories defined by tsconfig.json,
+  // If no config file is found in the directories defined by tsconfig.jsonFile,
   // try searching in the 'src' and 'dist' directory as a last resort, as they are most commonly used
   if (process.env.NODE_ENV === 'production') {
     const distConfigPath = await findUp(

@@ -1,12 +1,11 @@
-import { read } from 'to-vfile';
 import { matter } from 'vfile-matter';
+import { JSONFile } from '../jsonFile/types';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import { generateFileInfo } from './generateFileInfo';
-import { File } from '../../types/File';
+import { VFile } from 'vfile';
 
-export async function mdToJson(relativePath: string): Promise<File> {
-  const vfile = await read(relativePath);
+export async function convert(vfile: VFile): Promise<JSONFile> {
   matter(vfile, { strip: false });
 
   const body = unified().use(remarkParse).parse(vfile);

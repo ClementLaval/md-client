@@ -1,6 +1,6 @@
 // https://github.com/vfile/vfile
 
-import { File } from '../../types/File';
+import { JSONFile } from '../../formats/jsonFile/types';
 import { Collection } from '../index';
 import fs from 'fs';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
@@ -10,7 +10,7 @@ import { Logger } from '../../utillities/logger';
 export async function find(
   fileName: string,
   collection: Collection
-): Promise<File | undefined> {
+): Promise<JSONFile | undefined> {
   // Retrieve all files from collection path folder
   const fileList = fs.readdirSync(collection.path);
 
@@ -36,10 +36,12 @@ export async function find(
     return undefined;
   }
 
+  const relativePath = `${collection.path}/${matchingFile.name}${matchingFile.extension}`;
+
   // Return undefined if invalid file format
   if (!isValidFormat(matchingFile.extension)) {
     Logger.error(
-      `Invalid extension used: ${matchingFile.extension} | ${matchingFile.name}${matchingFile.extension}`
+      `Invalid extension used: ${matchingFile.extension} (${relativePath})`
     );
     return undefined;
   }
@@ -51,14 +53,13 @@ export async function find(
 
   if (!converter) {
     Logger.error(
-      `Error: unable to retrieve converter for file: ${matchingFile.name}${matchingFile.extension} `
+      `Error: unable to retrieve converter for file: ${relativePath} `
     );
     return undefined;
   }
 
-  const relativePath = `${collection.path}/${matchingFile.name}${matchingFile.extension}`;
   Logger.info(`Processing... ${relativePath}`);
-  
+
   // Execute converter and return JSON
   return converter.execute(relativePath);
 }

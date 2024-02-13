@@ -1,6 +1,6 @@
-import { FileInfo } from '../../types/FileInfo';
+import { JSONFileInfo } from '../jsonFile/types';
 
-export function generateFileInfo(input: string): FileInfo {
+export function generateFileInfo(input: string): JSONFileInfo {
   const pathParts = input.split('/');
   const filenameWithExtension = pathParts[pathParts.length - 1];
   const [filename, extension] = filenameWithExtension.split('.');
