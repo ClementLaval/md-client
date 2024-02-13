@@ -1,4 +1,4 @@
-import { JSONFileInfo } from '../jsonFile/types';
+import { JSONFileInfo } from './types';
 
 export function generateFileInfo(input: string): JSONFileInfo {
   const pathParts = input.split('/');

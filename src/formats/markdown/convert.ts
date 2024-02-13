@@ -2,7 +2,7 @@ import { matter } from 'vfile-matter';
 import { JSONFile } from '../jsonFile/types';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
-import { generateFileInfo } from './generateFileInfo';
+import { generateFileInfo } from '../jsonFile/generateFileInfo';
 import { VFile } from 'vfile';
 
 export async function convert(vfile: VFile): Promise<JSONFile> {
