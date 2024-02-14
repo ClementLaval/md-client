@@ -24,8 +24,4 @@ export class Collection {
   public findAll() {
     return findAll(this);
   }
-
-  public getFullPath(file: string) {
-    return `${this.path}/${file}`;
-  }
 }

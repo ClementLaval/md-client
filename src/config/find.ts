@@ -56,7 +56,7 @@ export const findConfig = async (): Promise<string> => {
           return tsPath;
         }
 
-        const jsPath = path.join(dir, 'md-client.config.js');
+        const jsPath = path.join(dir, 'md-client.config.ts');
         const hasJS = Boolean(await findUp(jsPath));
 
         if (hasJS) {
@@ -77,7 +77,7 @@ export const findConfig = async (): Promise<string> => {
   // try searching in the 'src' and 'dist' directory as a last resort, as they are most commonly used
   if (process.env.NODE_ENV === 'production') {
     const distConfigPath = await findUp(
-      ['md-client.config.js', 'md-client.config.ts'],
+      ['md-client.config.ts', 'md-client.config.ts'],
       {
         cwd: path.resolve(process.cwd(), 'dist'),
       }
@@ -86,7 +86,7 @@ export const findConfig = async (): Promise<string> => {
     if (distConfigPath) return distConfigPath;
   } else {
     const srcConfigPath = await findUp(
-      ['md-client.config.js', 'md-client.config.ts'],
+      ['md-client.config.ts', 'md-client.config.ts'],
       {
         cwd: path.resolve(process.cwd(), 'src'),
       }
@@ -96,6 +96,6 @@ export const findConfig = async (): Promise<string> => {
   }
 
   throw new Error(
-    'Error: cannot find md-client config. Please create a configuration file located at the root of your current working directory called "md-client.config.js" or "md-client.config.ts".'
+    'Error: cannot find md-client config. Please create a configuration file located at the root of your current working directory called "md-client.config.ts" or "md-client.config.ts".'
   );
 };

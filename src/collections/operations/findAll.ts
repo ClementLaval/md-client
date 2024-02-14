@@ -6,6 +6,7 @@ import { FORMATS } from '../../formats';
 import { Format } from '../../formats/types';
 import { removeArrayUndefined } from '../../utillities/removeArrayUndefined';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
+import { converter } from '../../formats/jsonFile/converter';
 
 export async function findAll(collection: Collection): Promise<JSONFile[]> {
   // Retrieve all files from collection path folder
@@ -31,16 +32,14 @@ export async function findAll(collection: Collection): Promise<JSONFile[]> {
         name: string;
         extension: string;
         relativePath: string;
-        converter: Format | undefined;
+        format: Format | undefined;
       }[],
       file
     ) => {
       acc.push({
         ...file,
         relativePath: `${collection.path}/${file.name}${file.extension}`,
-        converter: FORMATS.find(
-          (format) => format.extension === file.extension
-        ),
+        format: FORMATS.find((format) => format.extension === file.extension),
       });
 
       return acc;
@@ -50,9 +49,9 @@ export async function findAll(collection: Collection): Promise<JSONFile[]> {
 
   // Convert files
   const filesPromises = filePayloads.map((file) => {
-    if (isValidFormat(file.extension) && file.converter) {
+    if (isValidFormat(file.extension) && file.format) {
       Logger.info(`Processing... ${file.relativePath}`);
-      return file.converter.execute(file.relativePath);
+      return converter(file.relativePath, file.format);
     } else {
       Logger.error(
         `Invalid extension used: ${file.extension} (${file.relativePath})`

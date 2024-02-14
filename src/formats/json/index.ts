@@ -1,8 +1,10 @@
 import { Format } from '../types';
-import { execute } from './execute';
+import { retrieve } from './retrieve';
+import { convert } from './convert';
 
 export const JSONFormat: Format = {
   name: 'JSON',
   extension: '.json',
-  execute: execute,
+  retrieve: retrieve,
+  convert: convert,
 };

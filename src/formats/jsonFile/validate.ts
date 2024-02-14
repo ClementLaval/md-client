@@ -1,4 +1,4 @@
-import { JSONFile } from '../jsonFile/types';
+import { JSONFile } from './types';
 
 export function validate(jsonFile: JSONFile): JSONFile {
   return jsonFile;

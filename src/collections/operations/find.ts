@@ -6,6 +6,7 @@ import fs from 'fs';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
 import { FORMATS } from '../../formats';
 import { Logger } from '../../utillities/logger';
+import { converter } from '../../formats/jsonFile/converter';
 
 export async function find(
   fileName: string,
@@ -47,19 +48,17 @@ export async function find(
   }
 
   // Retrieve converter related to file extension
-  const converter = FORMATS.find(
+  const format = FORMATS.find(
     (format) => format.extension === matchingFile.extension
   );
 
-  if (!converter) {
-    Logger.error(
-      `Error: unable to retrieve converter for file: ${relativePath} `
-    );
+  if (!format) {
+    Logger.error(`Error: unable to retrieve format for file: ${relativePath} `);
     return undefined;
   }
 
   Logger.info(`Processing... ${relativePath}`);
 
   // Execute converter and return JSON
-  return converter.execute(relativePath);
+  return converter(relativePath, format);
 }
