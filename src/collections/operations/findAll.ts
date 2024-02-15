@@ -10,7 +10,15 @@ import { converter } from '../../formats/jsonFile/converter';
 
 export async function findAll(collection: Collection): Promise<JSONFile[]> {
   // Retrieve all files from collection path folder
-  const fileList = fs.readdirSync(collection.path);
+  let fileList;
+  try {
+    fileList = fs.readdirSync(collection.path);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      Logger.error(error.message);
+    }
+    fileList = [] as string[];
+  }
 
   // Reduce to get filename & extension
   const files = fileList.reduce(

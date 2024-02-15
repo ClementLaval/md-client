@@ -1,4 +1,4 @@
-export function trimCollectionPath(path: string): string {
+export function trimSlashPath(path: string): string {
   // Check if there is a slash at the beginning of the string
   if (path.startsWith('/')) {
     path = path.slice(1);

@@ -1,5 +1,5 @@
 import { find } from './operations/find';
-import { trimCollectionPath } from './utils/trimCollectionPath';
+import { trimSlashPath } from '../utillities/trimSlashPath';
 import { findAll } from './operations/findAll';
 import { Types } from '../fields/types';
 import { CollectionConfig } from './types';
@@ -12,7 +12,7 @@ export class Collection {
 
   constructor(config: CollectionConfig) {
     this.name = config.name;
-    this.path = trimCollectionPath(config.path);
+    this.path = trimSlashPath(config.path);
     this.fields = config.fields || [];
     this.computedFields = config.computedFields || [];
   }

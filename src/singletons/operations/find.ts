@@ -1,7 +1,7 @@
 // https://github.com/vfile/vfile
 
 import { JSONFile } from '../../formats/jsonFile/types';
-import { Collection } from '../index';
+import { Singleton } from '../index';
 import fs from 'fs';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
 import { FORMATS } from '../../formats';
@@ -9,13 +9,12 @@ import { Logger } from '../../utillities/logger';
 import { converter } from '../../formats/jsonFile/converter';
 
 export async function find(
-  fileName: string,
-  collection: Collection
+  singleton: Singleton
 ): Promise<JSONFile | undefined> {
   // Retrieve all files from collection path folder
   let fileList;
   try {
-    fileList = fs.readdirSync(collection.path);
+    fileList = fs.readdirSync(singleton.path);
   } catch (error: unknown) {
     if (error instanceof Error) {
       Logger.error(error.message);
@@ -37,15 +36,15 @@ export async function find(
   );
 
   // Find first file corresponding to input filename
-  const matchingFile = files.find((file) => file.name === fileName);
+  const matchingFile = files.find((file) => file.name === singleton.name);
 
   // Return undefined if no matching file
   if (!matchingFile) {
-    Logger.error(`No file found named: ${fileName}`);
+    Logger.error(`No file found named: ${singleton.name}`);
     return undefined;
   }
 
-  const relativePath = `${collection.path}/${matchingFile.name}${matchingFile.extension}`;
+  const relativePath = `${singleton.path}/${matchingFile.name}${matchingFile.extension}`;
 
   // Return undefined if invalid file format
   if (!isValidFormat(matchingFile.extension)) {

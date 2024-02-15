@@ -11,5 +11,6 @@ export const defaults: Config = {
   },
   schema: {
     collections: [],
+    singletons: [],
   },
 };

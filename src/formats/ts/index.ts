@@ -8,3 +8,10 @@ export const TsFormat: Format = {
   retrieve: retrieve,
   convert: convert,
 };
+
+export const JsFormat: Format = {
+  name: 'Js',
+  extension: '.js',
+  retrieve: retrieve,
+  convert: convert,
+};
