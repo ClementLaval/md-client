@@ -1,20 +1,26 @@
 import { Collection } from '../collections';
 import { Config } from '../config/types';
-import { CollectionConfig } from '../collections/types';
 import { SingletonConfig } from '../singletons/types';
 import { Singleton } from '../singletons';
 
 export class Client {
-  [key: CollectionConfig['name'] | SingletonConfig['name']]:
-    | Collection
-    | Singleton;
+  collections: Record<Collection['name'], Collection>;
+  singletons: Record<SingletonConfig['name'], Singleton>;
 
   constructor(config: Config) {
-    config.schema.collections.forEach((collection) => {
-      this[collection.name] = new Collection(collection);
-    });
-    config.schema.singletons.forEach((singleton) => {
-      this[singleton.name] = new Singleton(singleton);
-    });
+    this.collections = config.schema.collections.reduce(
+      (acc: Record<Collection['name'], Collection>, collection) => {
+        acc[collection.name] = new Collection(collection);
+        return acc;
+      },
+      {}
+    );
+    this.singletons = config.schema.singletons.reduce(
+      (acc: Record<Singleton['name'], Singleton>, singleton) => {
+        acc[singleton.name] = new Singleton(singleton);
+        return acc;
+      },
+      {}
+    );
   }
 }
