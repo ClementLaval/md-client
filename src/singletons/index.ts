@@ -2,8 +2,9 @@ import { Types } from '../fields/types';
 import { SingletonConfig } from './types';
 import { trimSlashPath } from '../utillities/trimSlashPath';
 import { find } from './operations/find';
+import { Document } from '../documents/types';
 
-export class Singleton {
+export class Singleton implements Document {
   name: string;
   _type?: string;
   path: string;

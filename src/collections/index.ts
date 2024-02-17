@@ -3,8 +3,9 @@ import { trimSlashPath } from '../utillities/trimSlashPath';
 import { findAll } from './operations/findAll';
 import { Types } from '../fields/types';
 import { CollectionConfig } from './types';
+import { Document } from '../documents/types';
 
-export class Collection {
+export class Collection implements Document {
   name: string;
   _type?: string;
   path: string;

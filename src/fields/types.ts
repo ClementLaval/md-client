@@ -69,3 +69,5 @@ export type ReferenceField = BaseField & {
   type: 'reference';
   to: string[];
 };
+
+export type DocReference<T> = T | string;
