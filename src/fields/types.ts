@@ -16,6 +16,7 @@ export type BaseField = {
   name: string;
   default?: () => any;
   required?: boolean;
+  _type?: string;
 };
 
 export type BooleanField = BaseField & {

@@ -67,5 +67,5 @@ export async function find(
   Logger.info(`Processing... ${relativePath}`);
 
   // Execute converter and return JSON
-  return converter(relativePath, format);
+  return converter(relativePath, singleton, format);
 }

@@ -1,9 +1,12 @@
 import type { JSONFile } from './jsonFile/types';
-import { VFile } from 'vfile';
+import { Collection } from '../collections';
+import { Singleton } from '../singletons';
 
 export interface Format {
   name: string;
   extension: string;
-  retrieve: (relativePath: string) => Promise<VFile>;
-  convert: (vFile: VFile) => Promise<JSONFile>;
+  execute: (
+    relativePath: string,
+    collection: Collection | Singleton
+  ) => Promise<JSONFile>;
 }

@@ -1,17 +1,14 @@
 import { Format } from '../types';
-import { retrieve } from './retrieve';
-import { convert } from './convert';
+import { execute } from './execute';
 
 export const TsFormat: Format = {
   name: 'TS',
   extension: '.ts',
-  retrieve: retrieve,
-  convert: convert,
+  execute: execute,
 };
 
 export const JsFormat: Format = {
   name: 'Js',
   extension: '.js',
-  retrieve: retrieve,
-  convert: convert,
+  execute: execute,
 };

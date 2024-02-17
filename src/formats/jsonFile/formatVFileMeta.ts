@@ -1,6 +1,6 @@
-import { JSONFileInfo } from './types';
+import { VFileMeta } from './types';
 
-export function generateFileInfo(input: string): JSONFileInfo {
+export function formatVFileMeta(input: string): VFileMeta {
   const pathParts = input.split('/');
   const filenameWithExtension = pathParts[pathParts.length - 1];
   const [filename, extension] = filenameWithExtension.split('.');

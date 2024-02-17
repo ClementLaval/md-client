@@ -59,7 +59,7 @@ export async function findAll(collection: Collection): Promise<JSONFile[]> {
   const filesPromises = filePayloads.map((file) => {
     if (isValidFormat(file.extension) && file.format) {
       Logger.info(`Processing... ${file.relativePath}`);
-      return converter(file.relativePath, file.format);
+      return converter(file.relativePath, collection, file.format);
     } else {
       Logger.error(
         `Invalid extension used: ${file.extension} (${file.relativePath})`
