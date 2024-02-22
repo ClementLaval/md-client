@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup';
 
 export default defineConfig((options) => ({
   format: ['esm'],
-  entry: ['src/index.ts', 'src/bin/index.ts'],
+  entry: ['src/index.ts', 'src/bin/converter.ts'],
   dts: true,
   shims: true,
   skipNodeModulesBundle: true,

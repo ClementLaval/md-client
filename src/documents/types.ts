@@ -1,9 +1,9 @@
-import { Types } from '../fields/types';
+import { Field } from '../fields/field';
 
 export interface Document {
   name: string;
   _type?: string;
   path: string;
-  fields: Types[];
+  fields: Field[];
   computedFields: any[];
 }

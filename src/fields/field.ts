@@ -1,4 +1,4 @@
-export type Types =
+export type Field =
   | BooleanField
   | DateField
   | DatetimeField
@@ -57,12 +57,12 @@ export type RichtextField = BaseField & {
 
 export type ObjectField = BaseField & {
   type: 'object';
-  fields: Types[];
+  fields: Field[];
 };
 
 export type ArrayField = BaseField & {
   type: 'array';
-  of: Types[];
+  of: Field[];
 };
 
 export type ReferenceField = BaseField & {

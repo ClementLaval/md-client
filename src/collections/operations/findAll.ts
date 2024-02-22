@@ -1,14 +1,14 @@
 import fs from 'fs';
 import { Collection } from '../index';
-import { JSONFile } from '../../formats/jsonFile/types';
+import { Data } from '../../data/types';
 import { Logger } from '../../utillities/logger';
 import { FORMATS } from '../../formats';
 import { Format } from '../../formats/types';
 import { removeArrayUndefined } from '../../utillities/removeArrayUndefined';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
-import { converter } from '../../formats/jsonFile/converter';
+import { converter } from '../../data/converter';
 
-export async function findAll(collection: Collection): Promise<JSONFile[]> {
+export async function findAll(collection: Collection): Promise<Data[]> {
   // Retrieve all files from collection path folder
   let fileList;
   try {

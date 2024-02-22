@@ -1,4 +1,4 @@
-import { Types } from '../fields/types';
+import { Field } from '../fields/field';
 import { SingletonConfig } from './types';
 import { trimSlashPath } from '../utillities/trimSlashPath';
 import { find } from './operations/find';
@@ -8,7 +8,7 @@ export class Singleton implements Document {
   name: string;
   _type?: string;
   path: string;
-  fields: Types[];
+  fields: Field[];
   computedFields: any[];
 
   constructor(config: SingletonConfig) {

@@ -1,17 +1,17 @@
 // https://github.com/vfile/vfile
 
-import { JSONFile } from '../../formats/jsonFile/types';
+import { Data } from '../../data/types';
 import { Collection } from '../index';
 import fs from 'fs';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
 import { FORMATS } from '../../formats';
 import { Logger } from '../../utillities/logger';
-import { converter } from '../../formats/jsonFile/converter';
+import { converter } from '../../data/converter';
 
 export async function find(
   fileName: string,
   collection: Collection
-): Promise<JSONFile | undefined> {
+): Promise<Data | undefined> {
   // Retrieve all files from collection path folder
   let fileList;
   try {
@@ -55,7 +55,7 @@ export async function find(
     return undefined;
   }
 
-  // Retrieve converter related to file extension
+  // Retrieve index related to file extension
   const format = FORMATS.find(
     (format) => format.extension === matchingFile.extension
   );
@@ -67,6 +67,6 @@ export async function find(
 
   Logger.info(`Processing... ${relativePath}`);
 
-  // Execute converter and return JSON
+  // Execute index and return JSON
   return converter(relativePath, collection, format);
 }

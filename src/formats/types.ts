@@ -1,8 +1,7 @@
-import { JSONFile } from './jsonFile/types';
-import { Document } from '../documents/types';
+import { Data } from '../data/types';
 
 export interface Format {
   name: string;
   extension: string;
-  execute: (relativePath: string, document: Document) => Promise<JSONFile>;
+  execute: (relativePath: string) => Promise<Data>;
 }
