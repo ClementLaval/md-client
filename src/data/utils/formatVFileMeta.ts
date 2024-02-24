@@ -12,7 +12,7 @@ export function formatVFileMeta(
   const [filename, extension] = filenameWithExtension.split('.');
 
   const _slug = slugify(filename || 'undefined-_slug');
-  const _type = toPascalCase(collection._type || 'undefined-_type');
+  const _type = toPascalCase(collection.name || 'undefined-type');
 
   return {
     _slug,

@@ -1,11 +1,10 @@
 import { Collection } from '../collections';
 import { Config } from '../config/types';
-import { SingletonConfig } from '../singletons/types';
 import { Singleton } from '../singletons';
 
 export class Client {
   collections: Record<Collection['name'], Collection>;
-  singletons: Record<SingletonConfig['name'], Singleton>;
+  singletons: Record<Singleton['name'], Singleton>;
 
   constructor(config: Config) {
     this.collections = config.schema.collections.reduce(

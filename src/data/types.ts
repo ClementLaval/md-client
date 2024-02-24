@@ -1,5 +1,5 @@
 import { Root } from 'mdast';
-import { Field } from '../fields/field';
+import { Field } from '../fields/types';
 
 export type CollectionMeta = {
   _slug: string;

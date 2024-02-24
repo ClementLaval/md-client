@@ -1,23 +1,11 @@
 import { find } from './operations/find';
-import { trimSlashPath } from '../utillities/trimSlashPath';
 import { findAll } from './operations/findAll';
-import { Field } from '../fields/field';
-import { CollectionConfig } from './types';
-import { Document } from '../documents/types';
+import { DocumentConfig } from '../documents/types';
+import { Document } from '../documents';
 
-export class Collection implements Document {
-  name: string;
-  _type?: string;
-  path: string;
-  fields: Field[];
-  computedFields: any[];
-
-  constructor(config: CollectionConfig) {
-    this.name = config.name;
-    this._type = config._type;
-    this.path = trimSlashPath(config.path);
-    this.fields = config.fields || [];
-    this.computedFields = config.computedFields || [];
+export class Collection extends Document {
+  constructor(config: DocumentConfig) {
+    super(config);
   }
 
   public find(fileName: string) {

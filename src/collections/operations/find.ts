@@ -67,6 +67,6 @@ export async function find(
 
   Logger.info(`Processing... ${relativePath}`);
 
-  // Execute index and return JSON
+  // Execute converter and return Json Data
   return converter(relativePath, collection, format);
 }

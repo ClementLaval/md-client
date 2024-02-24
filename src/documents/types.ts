@@ -1,9 +1,7 @@
-import { Field } from '../fields/field';
+import { Document } from './index';
 
-export interface Document {
-  name: string;
-  _type?: string;
-  path: string;
-  fields: Field[];
-  computedFields: any[];
-}
+export type DocumentConfig = {
+  name: Document['name'];
+  path: Document['path'];
+  fields: Document['fields'];
+};

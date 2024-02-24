@@ -1,7 +1,7 @@
 import { Data } from '../data/types';
 
 export interface Format {
-  name: string;
-  extension: string;
-  execute: (relativePath: string) => Promise<Data>;
+  readonly name: string;
+  readonly extension: string;
+  readonly execute: (relativePath: string) => Promise<Data>;
 }

@@ -1,6 +1,6 @@
 import { Data, DataConfig } from '../types';
 import { Document } from '../../documents/types';
-import { Field } from '../../fields/field';
+import { Field } from '../../fields/types';
 
 export function getDataConfig(data: Data, document: Document): DataConfig[] {
   return Object.entries(data).flatMap(([key, value]) =>
@@ -56,22 +56,22 @@ function getDataField(path: (string | number)[], document: Document): Field {
     // if path key is string
     if (typeof key === 'string') {
       if (acc?.type === 'object') {
-        return acc.fields.find((field) => field.name === key);
+        return acc.fields.find((field) => field?.name === key);
       }
-      return acc?.find((field) => field.name === key);
+      return acc?.find((field) => field?.name === key);
     }
 
     if (typeof key === 'number') {
       const isType = path[index + 1].toString().includes('type_');
       if (isType) {
         const type = path[index + 1].toString().replace('type_', '');
-        return acc?.of.find((field) => field.name === type);
+        return acc?.of.find((field) => field?.name === type);
       }
       if (acc?.type === 'array') {
         return acc.of;
       }
       if (acc?.type === 'object') {
-        return acc.fields.find((field) => field.name === key);
+        return acc.fields.find((field) => field?.name === key);
       }
     }
   }, document.fields);

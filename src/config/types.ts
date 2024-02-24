@@ -1,5 +1,4 @@
-import { CollectionConfig } from '../collections/types';
-import { SingletonConfig } from '../singletons/types';
+import { DocumentConfig } from '../documents/types';
 
 export type Config = {
   // studio: {
@@ -15,7 +14,7 @@ export type Config = {
     path: string;
   };
   schema: {
-    collections: CollectionConfig[];
-    singletons: SingletonConfig[];
+    collections: DocumentConfig[];
+    singletons: DocumentConfig[];
   };
 };
