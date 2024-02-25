@@ -1,19 +1,16 @@
 import { Document } from '../documents';
-import { FieldConfig } from './types';
 
-export abstract class AbstractField {
+export abstract class BaseField {
   public readonly name: string;
   public readonly required?: boolean;
   public readonly validate?: ({ value }: { value: any }) => Boolean;
   public readonly default?: ({
-    value,
     document,
   }: {
-    value: any;
     document: Document;
   }) => Promise<any>;
 
-  protected constructor(config: FieldConfig) {
+  protected constructor(config: BaseField) {
     this.name = config.name;
     this.required = config.required;
     this.validate = config.validate;

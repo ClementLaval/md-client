@@ -1,20 +1,27 @@
-import { BaseField, Field, FieldConfig } from '../types';
-import { AbstractField } from '../base';
+import { Field, FieldConfig } from '../types';
+import { BaseField } from '../base';
 import { FieldFactory } from '../FieldFactory';
+import vine from '@vinejs/vine';
 
-export class ObjectField extends AbstractField implements BaseField {
+export class ObjectField extends BaseField {
   public readonly type = 'object';
+  public readonly parse: (data: any) => Promise<Object>;
   public fields: Field[];
 
   constructor(config: FieldConfig) {
     super(config);
-    this.fields =
-      config.type === 'object'
-        ? config.fields.map((field) => FieldFactory.build(field))
-        : [];
+    this.parse = this._parse;
+    this.fields = this._fields(config);
   }
 
-  public parse(value: any): boolean {
-    return true;
+  private async _parse(data: any): Promise<Object> {
+    const schema = vine.record(vine.any());
+    return await vine.validate({ schema, data });
+  }
+
+  private _fields(config: FieldConfig): Field[] {
+    return config.type === 'object'
+      ? config.fields.map((field) => FieldFactory.build(field))
+      : [];
   }
 }

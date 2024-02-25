@@ -1,35 +1,42 @@
 import { Format } from '../formats/types';
-import { validate } from './steps/validate';
-import { sanitize } from './steps/sanitize';
-import { parse } from './steps/parse';
+import { _7Validate } from './steps/_7Validate';
+import { _8Sanitize } from './steps/_8Sanitize';
 import { Data } from './types';
-import { fillReference } from './steps/fillReference';
-import { injectMeta } from './steps/injectMeta';
-import { getDataConfig } from './steps/getDataConfig';
-import { merge } from './steps/merge';
+import { _3Reference } from './steps/_3Reference';
+import { _1Meta } from './steps/_1Meta';
+import { _2Config } from './steps/_2Config';
+import { _10Merge } from './steps/_10Merge';
 import { Document } from '../documents';
+import { _4Default } from './steps/_4Default';
+import { _5Computed } from './steps/_5Computed';
+import { _6Required } from './steps/_6Required';
+import { _9Parse } from './steps/_9Parse';
 
 export const converter = async (
   relativePath: string,
   document: Document,
   format: Format
 ): Promise<Data> => {
-  let inputData = await format.execute(relativePath);
+  let data = await format.execute(relativePath);
 
-  inputData = injectMeta(inputData, relativePath, document);
+  data = _1Meta(data, relativePath, document);
 
-  let dataConfig = getDataConfig(inputData, document);
-  console.log(dataConfig);
+  let configs = _2Config(data, document);
 
-  dataConfig = fillReference(dataConfig);
+  configs = _3Reference(configs);
 
-  dataConfig = parse(dataConfig);
+  configs = _4Default(configs, document);
 
-  dataConfig = validate(dataConfig);
+  configs = _5Computed(configs);
 
-  dataConfig = sanitize(dataConfig);
+  configs = _6Required(configs);
 
-  const outputData = merge(dataConfig);
+  configs = _7Validate(configs);
 
-  return outputData;
+  configs = _8Sanitize(configs);
+
+  configs = await _9Parse(configs);
+  console.log(configs);
+
+  return _10Merge(configs);
 };

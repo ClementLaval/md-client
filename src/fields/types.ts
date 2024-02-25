@@ -11,35 +11,32 @@ import { ObjectField } from './object';
 import { ArrayField } from './array';
 import { ReferenceField } from './reference';
 
-export interface BaseField {
-  readonly type: string;
-  parse: (value: any) => boolean;
-}
-
 export type Field =
+  | ArrayField
   | BooleanField
   | DateField
   | DatetimeField
   | FileField
   | ImageField
   | NumberField
-  | SlugField
-  | StringField
-  | RichtextField
   | ObjectField
-  | ArrayField
-  | ReferenceField;
+  | ReferenceField
+  | RichtextField
+  | SlugField
+  | StringField;
+
+type OmitConfig<T extends Field> = Omit<T, 'parse'>;
 
 export type FieldConfig =
-  | Omit<BooleanField, 'parse'>
-  | Omit<DateField, 'parse'>
-  | Omit<DatetimeField, 'parse'>
-  | Omit<FileField, 'parse'>
-  | Omit<ImageField, 'parse'>
-  | Omit<NumberField, 'parse'>
-  | Omit<SlugField, 'parse'>
-  | Omit<StringField, 'parse'>
-  | Omit<RichtextField, 'parse'>
-  | Omit<ObjectField, 'parse'>
-  | Omit<ArrayField, 'parse'>
-  | Omit<ReferenceField, 'parse'>;
+  | OmitConfig<ArrayField>
+  | OmitConfig<BooleanField>
+  | OmitConfig<DateField>
+  | OmitConfig<DatetimeField>
+  | OmitConfig<FileField>
+  | OmitConfig<ImageField>
+  | OmitConfig<NumberField>
+  | OmitConfig<ObjectField>
+  | OmitConfig<ReferenceField>
+  | OmitConfig<RichtextField>
+  | OmitConfig<SlugField>
+  | OmitConfig<StringField>;

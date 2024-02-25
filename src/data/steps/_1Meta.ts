@@ -1,9 +1,9 @@
-import { CollectionMeta, Data } from '../types';
+import { Data, DocumentMeta } from '../types';
 import { formatVFileMeta } from '../utils/formatVFileMeta';
-import { Document } from '../../documents/types';
+import { Document } from '../../documents';
 
-export function injectMeta(
-  data: Omit<Data, keyof CollectionMeta>,
+export function _1Meta(
+  data: Omit<Data, keyof DocumentMeta>,
   relativePath: string,
   document: Document
 ): Data {

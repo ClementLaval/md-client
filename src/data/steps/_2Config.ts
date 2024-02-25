@@ -1,8 +1,8 @@
 import { Data, DataConfig } from '../types';
-import { Document } from '../../documents/types';
+import { Document } from '../../documents/';
 import { Field } from '../../fields/types';
 
-export function getDataConfig(data: Data, document: Document): DataConfig[] {
+export function _2Config(data: Data, document: Document): DataConfig[] {
   return Object.entries(data).flatMap(([key, value]) =>
     getFieldConfig([key], value, document)
   );

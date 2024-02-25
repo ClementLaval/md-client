@@ -1,21 +1,18 @@
-import { BaseField, FieldConfig } from '../types';
-import { AbstractField } from '../base';
+import { FieldConfig } from '../types';
+import { BaseField } from '../base';
+import vine from '@vinejs/vine';
 
-export class StringField extends AbstractField implements BaseField {
+export class StringField extends BaseField {
   public readonly type = 'string';
+  public readonly parse: (value: any) => Promise<string>;
 
   constructor(config: FieldConfig) {
     super(config);
+    this.parse = this._parse;
   }
 
-  public parse(value: any): boolean {
-    const isStringType = typeof value === 'string';
-    const isUndefined = typeof value === 'undefined';
-
-    if (this.required === true) {
-      return isStringType;
-    } else {
-      return isStringType || isUndefined;
-    }
+  private async _parse(data: any): Promise<string> {
+    const schema = vine.string();
+    return await vine.validate({ schema, data });
   }
 }

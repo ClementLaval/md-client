@@ -1,12 +1,12 @@
-import { CollectionMeta } from '../types';
+import { DocumentMeta } from '../types';
 import { slugify } from '../../utillities/slugify';
-import { Document } from '../../documents/types';
 import { toPascalCase } from '../../utillities/toPascalCase';
+import { Document } from '../../documents';
 
 export function formatVFileMeta(
   relativePath: string,
   collection: Document
-): CollectionMeta {
+): DocumentMeta {
   const pathParts = relativePath.split('/');
   const filenameWithExtension = pathParts[pathParts.length - 1];
   const [filename, extension] = filenameWithExtension.split('.');
