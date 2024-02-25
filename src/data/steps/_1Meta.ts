@@ -1,13 +1,19 @@
 import { Data, DocumentMeta } from '../types';
-import { formatVFileMeta } from '../utils/formatVFileMeta';
 import { Document } from '../../documents';
+import { slugify } from '../../utilities/slugify';
+import { toPascalCase } from '../../utilities/toPascalCase';
 
 export function _1Meta(
   data: Omit<Data, keyof DocumentMeta>,
   relativePath: string,
   document: Document
 ): Data {
-  const { _slug, _type } = formatVFileMeta(relativePath, document);
+  const pathParts = relativePath.split('/');
+  const filenameWithExtension = pathParts[pathParts.length - 1];
+  const [filename, extension] = filenameWithExtension.split('.');
+
+  const _slug = slugify(filename || 'undefined-slug');
+  const _type = toPascalCase(document.name || 'undefined-type');
 
   return {
     _slug,

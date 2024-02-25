@@ -1,7 +1,8 @@
-import { findConfig } from './find';
+import { getClientConfigPath } from './find';
+import { Config } from './types';
 
-export const loadConfig = async () => {
-  const configPath = await findConfig();
+export const loadClientConfig = async () => {
+  const configPath = await getClientConfigPath();
 
-  const config = await import(configPath);
+  return (await import(configPath)).default as Config;
 };

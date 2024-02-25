@@ -5,7 +5,7 @@ import { Singleton } from '../index';
 import fs from 'fs';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
 import { FORMATS } from '../../formats';
-import { Logger } from '../../utillities/logger';
+import { Logger } from '../../utilities/logger';
 import { converter } from '../../data/converter';
 
 export async function find(singleton: Singleton): Promise<Data | undefined> {

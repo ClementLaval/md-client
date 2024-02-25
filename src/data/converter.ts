@@ -23,7 +23,7 @@ export const converter = async (
 
   let configs = _2Config(data, document);
 
-  configs = _3Reference(configs);
+  configs = await _3Reference(configs);
 
   configs = _4Default(configs, document);
 
@@ -31,12 +31,11 @@ export const converter = async (
 
   configs = _6Required(configs);
 
-  configs = _7Validate(configs);
+  configs = _7Validate(relativePath, configs);
 
   configs = _8Sanitize(configs);
 
   configs = await _9Parse(configs);
-  console.log(configs);
 
   return _10Merge(configs);
 };

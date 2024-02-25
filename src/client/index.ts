@@ -1,10 +1,12 @@
 import { Collection } from '../collections';
 import { Config } from '../config/types';
 import { Singleton } from '../singletons';
+import { defaults } from '../config/defaults';
 
 export class Client {
-  collections: Record<Collection['name'], Collection>;
-  singletons: Record<Singleton['name'], Singleton>;
+  public readonly collections: Record<Collection['name'], Collection>;
+  public readonly singletons: Record<Singleton['name'], Singleton>;
+  public readonly config: Config;
 
   constructor(config: Config) {
     this.collections = config.schema.collections.reduce(
@@ -21,5 +23,18 @@ export class Client {
       },
       {}
     );
+
+    this.config = config;
+    // Init singleton instance
+    Client.instance = this;
+  }
+
+  private static instance: Client;
+
+  public static getInstance(): Client {
+    if (!Client.instance) {
+      Client.instance = new Client(defaults);
+    }
+    return Client.instance;
   }
 }

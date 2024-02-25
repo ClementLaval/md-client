@@ -40,7 +40,7 @@ const getTSConfigPaths = async (): Promise<{
 /**
  * Searches for a md-client configuration file.
  */
-export const findConfig = async (): Promise<string> => {
+export const getClientConfigPath = async (): Promise<string> => {
   const { outPath, srcPath } = await getTSConfigPaths();
 
   const searchPaths =

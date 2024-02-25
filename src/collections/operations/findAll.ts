@@ -1,10 +1,10 @@
 import fs from 'fs';
 import { Collection } from '../index';
 import { Data } from '../../data/types';
-import { Logger } from '../../utillities/logger';
+import { Logger } from '../../utilities/logger';
 import { FORMATS } from '../../formats';
 import { Format } from '../../formats/types';
-import { removeArrayUndefined } from '../../utillities/removeArrayUndefined';
+import { removeArrayUndefined } from '../../utilities/removeArrayUndefined';
 import { isValidFormat } from '../../formats/utils/isValidFormat';
 import { converter } from '../../data/converter';
 

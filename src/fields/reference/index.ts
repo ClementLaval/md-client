@@ -17,7 +17,7 @@ export class ReferenceField extends BaseField {
   }
 
   private async _parse(data: any): Promise<string> {
-    const schema = vine.string();
+    const schema = vine.any();
     return await vine.validate({ schema, data });
   }
 

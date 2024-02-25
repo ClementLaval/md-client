@@ -1,12 +1,12 @@
 import { compile } from 'json-schema-to-typescript';
 import fs from 'fs';
 import { JSONSchema4 } from 'json-schema';
-import { loadConfig } from '../config/load';
-import { Logger } from '../utillities/logger';
+import { loadClientConfig } from '../config/load';
+import { Logger } from '../utilities/logger';
 
 export async function generateTypes(): Promise<void> {
   const outputFile = 'generated-types.ts';
-  const config = await loadConfig();
+  const config = await loadClientConfig();
 
   // TODO : remove
   const jsonSchema: JSONSchema4 = {

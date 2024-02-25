@@ -1,5 +1,5 @@
 import { FieldConfig } from '../fields/types';
-import { trimSlashPath } from '../utillities/trimSlashPath';
+import { trimSlashPath } from '../utilities/trimSlashPath';
 import { DocumentConfig } from './types';
 import { FieldFactory } from '../fields/FieldFactory';
 
@@ -11,10 +11,10 @@ export abstract class Document {
   protected constructor(config: DocumentConfig) {
     this.name = config.name;
     this.path = trimSlashPath(config.path);
-    this.fields = this.buildFields(config.fields);
+    this.fields = this._fields(config.fields);
   }
 
-  private buildFields(fields: FieldConfig[]): any {
+  private _fields(fields: FieldConfig[]): any {
     const metaFields: FieldConfig[] = [
       {
         name: '_slug',
