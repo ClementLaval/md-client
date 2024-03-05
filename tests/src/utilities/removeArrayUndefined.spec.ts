@@ -1,4 +1,5 @@
-import { removeArrayUndefined } from '../../src/utilities/removeArrayUndefined';
+import { removeArrayUndefined } from '../../../src/utilities/removeArrayUndefined';
+import { describe, expect, test } from 'vitest';
 
 describe('removeArrayUndefined', () => {
   const array = ['test1', 32, undefined, 'test2', undefined];

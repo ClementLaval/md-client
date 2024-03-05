@@ -1,4 +1,5 @@
-import { slugify } from '../../src/utilities/slugify';
+import { slugify } from '../../../src/utilities/slugify';
+import { describe, expect, test } from 'vitest';
 
 describe('slugify', () => {
   test('should transform into slug format', () => {

@@ -1,4 +1,5 @@
-import { trimSlashPath } from '../../src/utilities/trimSlashPath';
+import { trimSlashPath } from '../../../src/utilities/trimSlashPath';
+import { describe, expect, test } from 'vitest';
 
 describe('trimSlashPath', () => {
   test('should trim slash before and after', () => {

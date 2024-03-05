@@ -1,7 +1,6 @@
 import { Data, DocumentMeta } from '../types';
 import { Document } from '../../documents';
 import { slugify } from '../../utilities/slugify';
-import { toPascalCase } from '../../utilities/toPascalCase';
 
 export function _1Meta(
   data: Omit<Data, keyof DocumentMeta>,
@@ -13,7 +12,7 @@ export function _1Meta(
   const [filename, extension] = filenameWithExtension.split('.');
 
   const _slug = slugify(filename || 'undefined-slug');
-  const _type = toPascalCase(document.name || 'undefined-type');
+  const _type = document.name || 'undefined-type';
 
   return {
     _slug,

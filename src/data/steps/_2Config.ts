@@ -62,7 +62,7 @@ function getDataField(path: (string | number)[], document: Document): Field {
     }
 
     if (typeof key === 'number') {
-      const isType = path[index + 1].toString().includes('type_');
+      const isType = path[index + 1]?.toString().includes('type_');
       if (isType) {
         const type = path[index + 1].toString().replace('type_', '');
         return acc?.of.find((field) => field?.name === type);
