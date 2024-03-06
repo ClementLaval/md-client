@@ -13,8 +13,10 @@ export type Data = DocumentMeta & {
   body?: Root;
 };
 
+export type DataPath = (string | number)[];
+
 export type DataConfig = {
-  path: (string | number)[];
+  path: DataPath;
   value: any;
   field: Field;
 };
