@@ -1,5 +1,5 @@
-import { DataConfig } from '../types';
-import { Logger } from '../../utilities/logger';
+import { DataConfig } from '../../types';
+import { Logger } from '../../../utilities/logger';
 
 export function _7Validate(
   relativePath: string,

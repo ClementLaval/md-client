@@ -1,7 +1,7 @@
-import { DataConfig } from '../types';
-import { Client } from '../../client';
-import { trimSlashPath } from '../../utilities/trimSlashPath';
-import { DocReference } from '../../fields/reference';
+import { DataConfig } from '../../types';
+import { Client } from '../../../client';
+import { trimSlashPath } from '../../../utilities/trimSlashPath';
+import { DocReference } from '../../../fields/reference';
 
 export async function _3Reference(
   configs: DataConfig[]
@@ -17,7 +17,9 @@ export async function _3Reference(
   );
 }
 
-async function retrieveDocReference(relativePath: string): DocReference<any> {
+async function retrieveDocReference(
+  relativePath: string
+): Promise<DocReference<any>> {
   const clientInstance = Client.getInstance();
   const pathParts = relativePath.split('/');
   const filenameWithExtension = pathParts[pathParts.length - 1];

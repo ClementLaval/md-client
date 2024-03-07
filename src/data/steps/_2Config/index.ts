@@ -1,42 +1,11 @@
-import { Data, DataConfig, DataPath } from '../types';
-import { Document } from '../../documents/';
-import { Field } from '../../fields/types';
+import { Data, DataConfig } from '../../types';
+import { Document } from '../../../documents';
+import { Field } from '../../../fields/types';
 
 export function _2Config(data: Data, document: Document): DataConfig[] {
   return Object.entries(data).flatMap(([key, value]) =>
     getFieldConfig([key], value, document)
   );
-}
-
-/**
- * From any data return an array of paths representing his structure
- */
-export function getPaths(data: any, path: DataPath = []): DataPath[] {
-  if (Array.isArray(data)) {
-    return data.flatMap((item, index) => getPaths(item, [...path, index]));
-  }
-
-  if (typeof data === 'object') {
-    return Object.entries(data).flatMap(([key, value]) => {
-      if ('_type' in data) {
-        return getPaths(value, [...path, `type_${data._type}`, key]);
-      } else {
-        return getPaths(value, [...path, key]);
-      }
-    });
-  }
-
-  return [path];
-}
-
-/**
- * Retrieve value from object with a specific path
- */
-
-export function getPathValue(obj: object, path: DataPath): any {
-  return path.reduce((acc, key) => {
-    return acc[key];
-  }, obj);
 }
 
 export function getFieldConfig(

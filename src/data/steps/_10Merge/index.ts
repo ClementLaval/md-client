@@ -1,4 +1,4 @@
-import { Data, DataConfig } from '../types';
+import { Data, DataConfig } from '../../types';
 
 export function _10Merge(dataConfig: DataConfig[]): Data {
   // transform to Data format

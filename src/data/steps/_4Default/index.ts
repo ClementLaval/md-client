@@ -1,5 +1,5 @@
-import { DataConfig } from '../types';
-import { Document } from '../../documents';
+import { DataConfig } from '../../types';
+import { Document } from '../../../documents';
 
 export function _4Default(
   configs: DataConfig[],

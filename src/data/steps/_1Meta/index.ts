@@ -1,6 +1,6 @@
-import { Data, DocumentMeta } from '../types';
-import { Document } from '../../documents';
-import { slugify } from '../../utilities/slugify';
+import { Data, DocumentMeta } from '../../types';
+import { Document } from '../../../documents';
+import { slugify } from '../../../utilities/slugify';
 
 export function _1Meta(
   data: Omit<Data, keyof DocumentMeta>,

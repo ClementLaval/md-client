@@ -1,15 +1,15 @@
 import { describe, expect, test } from 'vitest';
-import { _2Config } from '../../../../src/data/steps/_2Config';
-import { DataConfig } from '../../../../src';
-import { _1MetaResult } from './_1Meta.spec';
-import { Collection } from '../../../../src/collections';
-import { page } from '../../../fake/cms/collections/page';
-import { StringField } from '../../../../src/fields/string';
-import { DateField } from '../../../../src/fields/date';
-import { BooleanField } from '../../../../src/fields/boolean';
-import { NumberField } from '../../../../src/fields/number';
-import { RichtextField } from '../../../../src/fields/richtext';
-import { ReferenceField } from '../../../../src/fields/reference';
+import { _2Config } from '../../../../../src/data/steps/_2Config';
+import { DataConfig } from '../../../../../src';
+import { Collection } from '../../../../../src/collections';
+import { page } from '../../../../fake/cms/collections/page';
+import { StringField } from '../../../../../src/fields/string';
+import { DateField } from '../../../../../src/fields/date';
+import { BooleanField } from '../../../../../src/fields/boolean';
+import { NumberField } from '../../../../../src/fields/number';
+import { RichtextField } from '../../../../../src/fields/richtext';
+import { ReferenceField } from '../../../../../src/fields/reference';
+import { _1MetaResult } from '../_1Meta/index.spec';
 
 export const _2Result: DataConfig[] = [
   {

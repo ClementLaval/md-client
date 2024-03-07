@@ -1,4 +1,4 @@
-import { DataConfig } from '../types';
+import { DataConfig } from '../../types';
 
 export async function _9Parse(configs: DataConfig[]): Promise<DataConfig[]> {
   return await Promise.all(
