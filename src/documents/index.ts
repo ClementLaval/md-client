@@ -1,4 +1,4 @@
-import { FieldConfig } from '../fields/types';
+import { Field, FieldConfig } from '../fields/types';
 import { trimSlashPath } from '../utilities/trimSlashPath';
 import { DocumentConfig } from './types';
 import { FieldFactory } from '../fields/FieldFactory';
@@ -6,7 +6,7 @@ import { FieldFactory } from '../fields/FieldFactory';
 export abstract class Document {
   name: string;
   path: string;
-  fields: FieldConfig[];
+  fields: Field[];
 
   protected constructor(config: DocumentConfig) {
     this.name = config.name;

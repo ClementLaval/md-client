@@ -114,22 +114,22 @@ describe('getPathValue', () => {
         },
       ],
     };
+    expect(getPathValue(data, ['sections', 0, '#heroBanner', '_type'])).toEqual(
+      'heroBanner'
+    );
+    expect(getPathValue(data, ['sections', 0, '#heroBanner', 'title'])).toEqual(
+      'Hello World'
+    );
+    expect(getPathValue(data, ['sections', 1, '#twoColumns', '_type'])).toEqual(
+      'twoColumns'
+    );
     expect(
-      getPathValue(data, ['sections', 0, 'type_heroBanner', '_type'])
-    ).toEqual('heroBanner');
-    expect(
-      getPathValue(data, ['sections', 0, 'type_heroBanner', 'title'])
-    ).toEqual('Hello World');
-    expect(
-      getPathValue(data, ['sections', 1, 'type_twoColumns', '_type'])
-    ).toEqual('twoColumns');
-    expect(
-      getPathValue(data, ['sections', 1, 'type_twoColumns', 'image', 'src'])
+      getPathValue(data, ['sections', 1, '#twoColumns', 'image', 'src'])
     ).toEqual(
       'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
     );
     expect(
-      getPathValue(data, ['sections', 1, 'type_twoColumns', 'image', 'alt'])
+      getPathValue(data, ['sections', 1, '#twoColumns', 'image', 'alt'])
     ).toEqual('alt text image');
   });
 });

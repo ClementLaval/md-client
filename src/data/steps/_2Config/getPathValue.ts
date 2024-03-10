@@ -5,7 +5,8 @@ import { DataPath } from '../../types';
  */
 export function getPathValue(obj: Record<string, any>, path: DataPath): any {
   return path.reduce((acc, key) => {
-    if (key.toString().startsWith('type_')) {
+    // Skip and continue
+    if (key.toString().startsWith('#')) {
       return acc;
     }
 

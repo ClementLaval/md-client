@@ -13,7 +13,7 @@ import { _1MetaResult } from '../_1Meta/index.spec';
 
 export const _2Result: DataConfig[] = [
   {
-    path: ['_slug'],
+    path: ['#page', '_slug'],
     value: 'home',
     field: new StringField({
       name: '_slug',
@@ -22,7 +22,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['_type'],
+    path: ['#page', '_type'],
     value: 'page',
     field: new StringField({
       name: '_type',
@@ -31,7 +31,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['title'],
+    path: ['#page', 'title'],
     value: 'Home',
     field: new StringField({
       name: 'title',
@@ -39,7 +39,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['publishedAt'],
+    path: ['#page', 'publishedAt'],
     value: '2024-01-02T23:00:00.000Z',
     field: new DateField({
       name: 'publishedAt',
@@ -47,7 +47,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['isPublished'],
+    path: ['#page', 'isPublished'],
     value: true,
     field: new BooleanField({
       name: 'isPublished',
@@ -56,7 +56,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['views'],
+    path: ['#page', 'views'],
     value: 236,
     field: new NumberField({
       name: 'views',
@@ -64,7 +64,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['description'],
+    path: ['#page', 'description'],
     value: 'Lorem ipsum dolor sit amet lobortis tempus fusce.',
     field: new RichtextField({
       name: 'description',
@@ -72,7 +72,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['sections', 0, 'type_heroBanner', '_type'],
+    path: ['#page', 'sections', 0, '#heroBanner', '_type'],
     value: 'heroBanner',
     field: new StringField({
       name: '_type',
@@ -80,7 +80,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['sections', 0, 'type_heroBanner', 'title'],
+    path: ['#page', 'sections', 0, '#heroBanner', 'title'],
     value: 'Welcome!',
     field: new StringField({
       name: 'title',
@@ -88,7 +88,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['sections', 0, 'type_heroBanner', 'coverImage', 'src'],
+    path: ['#page', 'sections', 0, '#heroBanner', 'coverImage', 'src'],
     value: '/uploads/pexels-vedanti-239975.jpg',
     field: new StringField({
       name: 'src',
@@ -96,7 +96,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['sections', 0, 'type_heroBanner', 'coverImage', 'alt'],
+    path: ['#page', 'sections', 0, '#heroBanner', 'coverImage', 'alt'],
     value: 'Alt text image',
     field: new StringField({
       name: 'alt',
@@ -104,7 +104,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['sections', 0, 'type_heroBanner', 'link'],
+    path: ['#page', 'sections', 0, '#heroBanner', 'link'],
     value: 'content/blogs/article-1.md',
     field: new ReferenceField({
       name: 'link',
@@ -113,7 +113,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['seo', 'title'],
+    path: ['#page', 'seo', 'title'],
     value: 'Site title',
     field: new StringField({
       name: 'title',
@@ -122,7 +122,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['seo', 'description'],
+    path: ['#page', 'seo', 'description'],
     value: 'Site description',
     field: new StringField({
       name: 'description',
@@ -130,7 +130,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['seo', 'noIndex'],
+    path: ['#page', 'seo', 'noIndex'],
     value: false,
     field: new BooleanField({
       name: 'noIndex',
@@ -139,7 +139,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['seo', 'keywords', 0],
+    path: ['#page', 'seo', 'keywords', 0],
     value: 'keyword 1',
     field: new StringField({
       name: 'keyword',
@@ -147,7 +147,7 @@ export const _2Result: DataConfig[] = [
     }),
   },
   {
-    path: ['seo', 'keywords', 1],
+    path: ['#page', 'seo', 'keywords', 1],
     value: 'keyword 2',
     field: new StringField({
       name: 'keyword',
@@ -156,7 +156,8 @@ export const _2Result: DataConfig[] = [
   },
 ];
 describe('_2Config', () => {
-  test.skip('should retrieve config for each field', () => {
-    expect(_2Config(_1MetaResult, new Collection(page))).toEqual(_2Result);
+  test('should retrieve config for each field', () => {
+    const result = _2Config(_1MetaResult, new Collection(page));
+    expect(JSON.stringify(result)).toEqual(JSON.stringify(_2Result));
   });
 });

@@ -6,7 +6,7 @@ import vine from '@vinejs/vine';
 export class ArrayField extends BaseField {
   public readonly type = 'array';
   public readonly parse: (data: any) => Promise<any[]>;
-  public readonly of: FieldConfig[];
+  public readonly of: Field[];
 
   constructor(config: FieldConfig) {
     super(config);

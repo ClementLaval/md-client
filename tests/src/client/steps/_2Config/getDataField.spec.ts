@@ -11,17 +11,7 @@ import { RichtextField } from '../../../../../src/fields/richtext';
 import { ReferenceField } from '../../../../../src/fields/reference';
 import { objectPaths } from './getPaths.spec';
 
-export const objectFields: DataConfig['field'] = [
-  new StringField({
-    name: '_slug',
-    type: 'string',
-    required: true,
-  }),
-  new StringField({
-    name: '_type',
-    type: 'string',
-    required: true,
-  }),
+export const objectFields: DataConfig['field'][] = [
   new StringField({
     name: 'title',
     type: 'string',
@@ -43,6 +33,7 @@ export const objectFields: DataConfig['field'] = [
     name: 'description',
     type: 'richtext',
   }),
+  //--- HERO BANNER ---//
   new StringField({
     name: '_type',
     type: 'string',
@@ -64,6 +55,7 @@ export const objectFields: DataConfig['field'] = [
     type: 'reference',
     to: ['article'],
   }),
+  //--- END: HERO BANNER ---//
   new StringField({
     name: 'title',
     type: 'string',
@@ -87,15 +79,16 @@ export const objectFields: DataConfig['field'] = [
     type: 'string',
   }),
 ];
+
 describe('getDataField', () => {
   test('should return full fields config from home page', () => {
     const document = new Collection(page);
-    expect(objectPaths.map((path) => getDataField(document, path))).toEqual(
-      objectFields
-    );
+    const result = objectPaths.map((path) => getDataField(document, path));
+    const expected = objectFields;
+    expect(JSON.stringify(result)).toEqual(JSON.stringify(expected));
   });
 
-  test('should return field constructor with config', () => {
+  test('should return field config for simple type as string, boolean, date', () => {
     const document = new Collection(page);
     const path = ['title'];
     const result = new StringField({

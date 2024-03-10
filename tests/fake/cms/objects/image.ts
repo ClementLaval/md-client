@@ -4,7 +4,7 @@ import { FieldConfig } from '../../../../src';
 export const image = ({
   name = 'image',
 }: Partial<BaseField> = {}): FieldConfig => ({
-  name: 'image',
+  name,
   type: 'object',
   fields: [
     {

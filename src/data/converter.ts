@@ -6,6 +6,11 @@ import { _10Merge } from './steps/_10Merge';
 import { Document } from '../documents';
 import { _6Required } from './steps/_6Required';
 import { _9Parse } from './steps/_9Parse';
+import { _1Meta } from './steps/_1Meta';
+import { _2Config } from './steps/_2Config';
+import { _3Reference } from './steps/_3Reference';
+import { _4Default } from './steps/_4Default';
+import { _5Computed } from './steps/_5Computed';
 
 export const converter = async (
   relativePath: string,
@@ -14,15 +19,15 @@ export const converter = async (
 ): Promise<Data> => {
   let data = await format.execute(relativePath);
 
-  data = _6Required(data, relativePath, document);
+  data = _1Meta(data, relativePath, document);
 
-  let configs = _6Required(data, document);
+  let configs = _2Config(data, document);
 
-  configs = await _6Required(configs);
+  configs = await _3Reference(configs);
 
-  configs = _6Required(configs, document);
+  configs = _4Default(configs, document);
 
-  configs = _6Required(configs);
+  configs = _5Computed(configs);
 
   configs = _6Required(configs);
 
