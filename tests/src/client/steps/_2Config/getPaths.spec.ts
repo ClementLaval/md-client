@@ -127,4 +127,17 @@ describe('getPaths', () => {
 
     expect(getPaths(data)).toEqual(result);
   });
+
+  test('should detect richtext type and dont go further in object structure', () => {
+    const data = {
+      body: {
+        type: 'root',
+        children: [],
+        position: { start: {}, end: {} },
+      },
+    };
+    const result = [['body']];
+
+    expect(getPaths(data)).toEqual(result);
+  });
 });

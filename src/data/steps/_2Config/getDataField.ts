@@ -16,7 +16,7 @@ export function getDataField(
      */
     if (!acc) {
       Logger.error(
-        `No field config corresponding to path [${path}] at field (${path[index]}) related to document named (${document.name})`
+        `No field config corresponding to path [${path}] at field (${path[index]})`
       );
       return undefined;
     }
