@@ -1,6 +1,8 @@
 import { FieldConfig } from '../types';
 import { BaseField } from '../base';
 import vine from '@vinejs/vine';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
 
 export class RichtextField extends BaseField {
   public readonly type = 'richtext';
@@ -12,7 +14,13 @@ export class RichtextField extends BaseField {
   }
 
   private async _parse(data: any): Promise<Object> {
+    // parse markdown into AST
+    const parsedData = unified().use(remarkParse).parse(data);
     const schema = vine.any();
-    return await vine.validate({ schema, data });
+
+    return await vine.validate({
+      schema,
+      data: parsedData,
+    });
   }
 }
