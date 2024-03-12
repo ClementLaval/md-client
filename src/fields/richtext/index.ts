@@ -12,7 +12,7 @@ export class RichtextField extends BaseField {
   }
 
   private async _parse(data: any): Promise<Object> {
-    const schema = vine.record(vine.any());
+    const schema = vine.any();
     return await vine.validate({ schema, data });
   }
 }

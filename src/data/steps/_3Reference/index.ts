@@ -2,24 +2,30 @@ import { DataConfig } from '../../types';
 import { Client } from '../../../client';
 import { trimSlashPath } from '../../../utilities/trimSlashPath';
 import { DocReference } from '../../../fields/reference';
+import { Logger } from '../../../utilities/logger';
 
 export async function _3Reference(
   configs: DataConfig[]
 ): Promise<DataConfig[]> {
-  return await Promise.all(
-    configs.map(async (config) => ({
-      ...config,
-      value:
-        config.field?.type === 'reference'
-          ? await retrieveDocReference(config.value)
-          : config.value,
-    }))
+  return Promise.all(
+    configs.map(async (config) => {
+      if (config.field?.type === 'reference') {
+        const document = await retrieveDocReference(config.value);
+
+        return {
+          ...config,
+          value: typeof document === 'object' ? document : config.value,
+        };
+      }
+
+      return config;
+    })
   );
 }
 
 async function retrieveDocReference(
   relativePath: string
-): Promise<DocReference<any>> {
+): Promise<DocReference<any> | string> {
   const clientInstance = Client.getInstance();
   const pathParts = relativePath.split('/');
   const filenameWithExtension = pathParts[pathParts.length - 1];
@@ -33,8 +39,10 @@ async function retrieveDocReference(
   );
 
   if (collection) {
+    // if related document is founded, return his data
     return await collection.find(filename);
   } else {
-    return relativePath;
+    Logger.error(`No collection found on reference field: ${relativePath}`);
+    return undefined;
   }
 }
