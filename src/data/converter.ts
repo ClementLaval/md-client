@@ -21,7 +21,7 @@ export const converter = async (
 
   data = _1Meta(data, relativePath, document);
 
-  let configs = _2Config(data, document);
+  let configs = _2Config(data, relativePath, document);
 
   configs = await _3Reference(configs);
 

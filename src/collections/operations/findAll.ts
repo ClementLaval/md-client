@@ -69,6 +69,5 @@ export async function findAll(collection: Collection): Promise<Data[]> {
 
   const jsonFiles = removeArrayUndefined(await Promise.all(filesPromises));
 
-  Logger.info(`Total: ${jsonFiles.length} files processed 🎉`);
   return jsonFiles;
 }

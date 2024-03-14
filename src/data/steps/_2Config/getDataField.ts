@@ -8,16 +8,11 @@ import { Logger } from '../../../utilities/logger';
  */
 export function getDataField(
   document: Document,
+  relativePath: string,
   path: DataPath
 ): Field | undefined {
   const result = path.reduce((acc: Field | Field[] | undefined, key, index) => {
-    /**
-     * If not field corresponding
-     */
     if (!acc) {
-      Logger.error(
-        `No field config corresponding to path [${path}] at field (${path[index]})`
-      );
       return undefined;
     }
 
@@ -79,6 +74,14 @@ export function getDataField(
       return acc;
     }
   }, document.fields);
+
+  /**
+   * If not field corresponding
+   */
+  if (!result) {
+    Logger.warn(`"${path.at(-1)}": unknown field on ${relativePath} [${path}]`);
+    return undefined;
+  }
 
   if (Array.isArray(result)) {
     return result.length ? result[0] : undefined;

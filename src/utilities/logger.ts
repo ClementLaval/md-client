@@ -5,6 +5,7 @@ export const Logger = pino(
   {
     name: 'md-client',
     enabled: true,
+    level: 'warn',
   },
   pretty({
     colorize: true,

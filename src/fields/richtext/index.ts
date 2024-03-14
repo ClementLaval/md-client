@@ -14,7 +14,7 @@ export class RichtextField extends BaseField {
   }
 
   private async _parse(data: any): Promise<Object> {
-    // parse markdown into AST
+    // parse markdown into MAST
     const parsedData = unified().use(remarkParse).parse(data);
     const schema = vine.any();
 
