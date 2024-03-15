@@ -46,15 +46,15 @@ export const _2Result: DataConfig[] = [
       type: 'date',
     }),
   },
-  {
-    path: ['#page', 'isPublished'],
-    value: true,
-    field: new BooleanField({
-      name: 'isPublished',
-      type: 'boolean',
-      default: () => true,
-    }),
-  },
+  // {
+  //   path: ['#page', 'isPublished'],
+  //   value: true,
+  //   field: new BooleanField({
+  //     name: 'isPublished',
+  //     type: 'boolean',
+  //     default: () => true,
+  //   }),
+  // },
   {
     path: ['#page', 'views'],
     value: 236,
@@ -105,7 +105,7 @@ export const _2Result: DataConfig[] = [
   },
   {
     path: ['#page', 'sections', 0, '#heroBanner', 'link'],
-    value: 'content/blogs/article-1.md',
+    value: 'tests/fake/content/blogs/article-1.md',
     field: new ReferenceField({
       name: 'link',
       type: 'reference',

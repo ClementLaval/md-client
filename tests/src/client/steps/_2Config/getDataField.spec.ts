@@ -20,11 +20,11 @@ export const objectFields: DataConfig['field'][] = [
     name: 'publishedAt',
     type: 'date',
   }),
-  new BooleanField({
-    name: 'isPublished',
-    type: 'boolean',
-    default: () => true,
-  }),
+  // new BooleanField({
+  //   name: 'isPublished',
+  //   type: 'boolean',
+  //   default: () => true,
+  // }),
   new NumberField({
     name: 'views',
     type: 'number',

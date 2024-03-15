@@ -4,7 +4,7 @@ import { heroBanner } from '../sections/heroBanner';
 
 export const page: DocumentConfig = {
   name: 'page',
-  path: 'content/pages',
+  path: 'tests/fake/content/pages',
   fields: [
     {
       name: 'title',

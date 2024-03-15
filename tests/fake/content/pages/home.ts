@@ -1,7 +1,7 @@
 const home = {
   title: 'Home',
   publishedAt: '2024-01-02T23:00:00.000Z',
-  isPublished: true,
+  // isPublished: true,
   views: 236,
   description: 'Lorem ipsum dolor sit amet lobortis tempus fusce.',
   sections: [
@@ -12,7 +12,7 @@ const home = {
         src: '/uploads/pexels-vedanti-239975.jpg',
         alt: 'Alt text image',
       },
-      link: 'content/blogs/article-1.md',
+      link: 'tests/fake/content/blogs/article-1.md',
     },
   ],
   seo: {

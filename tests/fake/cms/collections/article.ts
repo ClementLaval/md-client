@@ -2,7 +2,7 @@ import { DocumentConfig } from '../../../../src';
 
 export const article: DocumentConfig = {
   name: 'article',
-  path: 'content/blogs',
+  path: 'tests/fake/content/blogs',
   fields: [
     {
       name: 'title',

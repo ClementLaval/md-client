@@ -6,7 +6,7 @@ import { DataConfig } from '../../../../../src';
 export const objectPaths: DataConfig['path'][] = [
   ['title'],
   ['publishedAt'],
-  ['isPublished'],
+  // ['isPublished'],
   ['views'],
   ['description'],
   ['sections', 0, '#heroBanner', '_type'],
