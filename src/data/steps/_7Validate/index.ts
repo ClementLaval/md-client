@@ -2,8 +2,8 @@ import { DataConfig } from '../../types';
 import { Logger } from '../../../utilities/logger';
 
 export function _7Validate(
-  relativePath: string,
-  configs: DataConfig[]
+  configs: DataConfig[],
+  relativePath: string
 ): DataConfig[] {
   configs.forEach(async (config) => {
     if (config.field?.validate) {

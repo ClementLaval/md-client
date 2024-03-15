@@ -2,21 +2,28 @@ import { Field, FieldConfig, OmitConfig } from '../types';
 import { BaseField } from '../base';
 import { FieldFactory } from '../FieldFactory';
 import vine from '@vinejs/vine';
+import { ParsingException } from '../../exceptions/ParsingException';
 
 export class ArrayField extends BaseField {
   public readonly type = 'array';
-  public readonly parse: (data: any) => Promise<any[]>;
   public readonly of: FieldConfig[];
 
   constructor(config: OmitConfig<ArrayField>) {
     super(config);
-    this.parse = this._parse;
     this.of = this._of(config);
   }
 
-  private async _parse(data: unknown): Promise<any[]> {
-    const schema = vine.array(vine.any());
-    return await vine.validate({ schema, data });
+  public async parse(
+    value: unknown,
+    relativePath: string
+  ): Promise<any[] | undefined> {
+    try {
+      const schema = vine.array(vine.any());
+      return await vine.validate({ schema, data: value });
+    } catch (error) {
+      new ParsingException(this.name, value, relativePath, 'array');
+      return undefined;
+    }
   }
 
   private _of(config: FieldConfig): Field[] {

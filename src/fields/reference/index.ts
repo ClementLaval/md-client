@@ -2,23 +2,30 @@ import { FieldConfig, OmitConfig } from '../types';
 import { BaseField } from '../base';
 import { Document } from '../../documents';
 import vine from '@vinejs/vine';
+import { ParsingException } from '../../exceptions/ParsingException';
 
 export type DocReference<T> = T | string;
 
 export class ReferenceField extends BaseField {
   public readonly type = 'reference';
-  public readonly parse: (data: any) => Promise<string>;
   public to: Document['name'][];
 
   constructor(config: OmitConfig<ReferenceField>) {
     super(config);
-    this.parse = this._parse;
     this.to = this._to(config);
   }
 
-  private async _parse(data: unknown): Promise<string> {
-    const schema = vine.any();
-    return await vine.validate({ schema, data });
+  public async parse(
+    value: unknown,
+    relativePath: string
+  ): Promise<string | undefined> {
+    try {
+      const schema = vine.any();
+      return await vine.validate({ schema, data: value });
+    } catch (error) {
+      new ParsingException(this.name, value, relativePath, 'reference');
+      return undefined;
+    }
   }
 
   private _to(config: FieldConfig): string[] {

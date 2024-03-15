@@ -3,15 +3,14 @@ import { BaseField } from '../base';
 import { FieldFactory } from '../FieldFactory';
 import vine from '@vinejs/vine';
 import { StringField } from '../string';
+import { ParsingException } from '../../exceptions/ParsingException';
 
 export class ObjectField extends BaseField {
   public readonly type = 'object';
-  public readonly parse: (data: any) => Promise<Object>;
   public fields: FieldConfig[];
 
   constructor(config: OmitConfig<ObjectField>) {
     super(config);
-    this.parse = this._parse;
     this.fields = [
       /**
        * Add _type field that should get the config.name as value
@@ -25,9 +24,17 @@ export class ObjectField extends BaseField {
     ];
   }
 
-  private async _parse(data: unknown): Promise<Object> {
-    const schema = vine.record(vine.any());
-    return await vine.validate({ schema, data });
+  public async parse(
+    value: unknown,
+    relativePath: string
+  ): Promise<object | undefined> {
+    try {
+      const schema = vine.record(vine.any());
+      return await vine.validate({ schema, data: value });
+    } catch (error) {
+      new ParsingException(this.name, value, relativePath, 'object');
+      return undefined;
+    }
   }
 
   private _fields(config: OmitConfig<ObjectField>): Field[] {

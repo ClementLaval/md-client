@@ -31,11 +31,11 @@ export const converter = async (
 
   configs = _6Required(configs);
 
-  configs = _7Validate(relativePath, configs);
+  configs = _7Validate(configs, relativePath);
 
   configs = _8Sanitize(configs);
 
-  configs = await _9Parse(configs);
+  configs = await _9Parse(configs, relativePath);
 
   return _10Merge(configs);
 };

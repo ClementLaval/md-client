@@ -1,5 +1,4 @@
 import * as src from 'src';
-import { Root } from 'mdast';
 
 declare abstract class BaseField {
     readonly name: string;
@@ -15,93 +14,81 @@ declare abstract class BaseField {
 
 declare class BooleanField extends BaseField {
     readonly type = "boolean";
-    readonly parse: (data: any) => Promise<boolean>;
     constructor(config: OmitConfig<BooleanField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<boolean | undefined>;
 }
 
 declare class DateField extends BaseField {
     readonly type = "date";
-    readonly parse: (data: any) => Promise<string>;
     constructor(config: OmitConfig<DateField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
 }
 
 declare class DatetimeField extends BaseField {
     readonly type = "datetime";
-    readonly parse: (data: any) => Promise<string>;
     constructor(config: OmitConfig<DatetimeField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
 }
 
 declare class FileField extends BaseField {
     readonly type = "file";
-    readonly parse: (data: any) => Promise<string>;
     constructor(config: OmitConfig<FileField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
 }
 
 declare class ImageField extends BaseField {
     readonly type = "image";
-    readonly parse: (data: any) => Promise<string>;
     constructor(config: OmitConfig<ImageField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
 }
 
 declare class NumberField extends BaseField {
     readonly type = "number";
-    readonly parse: (data: any) => Promise<number>;
     constructor(config: OmitConfig<NumberField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<number | undefined>;
 }
 
 declare class SlugField extends BaseField {
     readonly type = "slug";
-    readonly parse: (data: any) => Promise<string>;
     constructor(config: OmitConfig<SlugField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
 }
 
 declare class StringField extends BaseField {
     readonly type = "string";
-    readonly parse: (value: any) => Promise<string>;
     constructor(config: OmitConfig<StringField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
 }
 
 declare class RichtextField extends BaseField {
     readonly type = "richtext";
     readonly isBody?: boolean;
-    readonly parse: (data: any) => Promise<Object>;
     constructor(config: OmitConfig<RichtextField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
 }
 
 declare class ObjectField extends BaseField {
     readonly type = "object";
-    readonly parse: (data: any) => Promise<Object>;
     fields: FieldConfig[];
     constructor(config: OmitConfig<ObjectField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<object | undefined>;
     private _fields;
 }
 
 declare class ArrayField extends BaseField {
     readonly type = "array";
-    readonly parse: (data: any) => Promise<any[]>;
     readonly of: FieldConfig[];
     constructor(config: OmitConfig<ArrayField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<any[] | undefined>;
     private _of;
 }
 
 type DocReference<T> = T | string;
 declare class ReferenceField extends BaseField {
     readonly type = "reference";
-    readonly parse: (data: any) => Promise<string>;
     to: Document['name'][];
     constructor(config: OmitConfig<ReferenceField>);
-    private _parse;
+    parse(value: unknown, relativePath: string): Promise<string | undefined>;
     private _to;
 }
 
@@ -164,7 +151,6 @@ type DocumentMeta = {
 };
 type Data = DocumentMeta & {
     [key: string]: any;
-    body?: Root;
 };
 type DataPath = (string | number)[];
 type DataConfig = {

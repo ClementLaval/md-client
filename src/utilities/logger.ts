@@ -3,7 +3,6 @@ import pretty from 'pino-pretty';
 
 export const Logger = pino(
   {
-    name: 'md-client',
     enabled: true,
     level: 'warn',
   },
