@@ -25,7 +25,7 @@ export type Field =
   | SlugField
   | StringField;
 
-type OmitConfig<T extends Field> = Omit<T, 'parse'>;
+export type OmitConfig<T extends Field> = Omit<T, 'parse'>;
 
 export type FieldConfig =
   | OmitConfig<ArrayField>

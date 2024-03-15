@@ -11,6 +11,7 @@ export const article: DocumentConfig = {
     {
       name: 'body',
       type: 'richtext',
+      isBody: true,
     },
   ],
 };

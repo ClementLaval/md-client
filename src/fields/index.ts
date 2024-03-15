@@ -12,18 +12,20 @@ import { RichtextField } from './richtext';
 import { SlugField } from './slug';
 import { StringField } from './string';
 
-export const FIELDS: Record<Field['type'], new (field: FieldConfig) => Field> =
-  {
-    array: ArrayField,
-    boolean: BooleanField,
-    date: DateField,
-    datetime: DatetimeField,
-    file: FileField,
-    image: ImageField,
-    number: NumberField,
-    object: ObjectField,
-    reference: ReferenceField,
-    richtext: RichtextField,
-    slug: SlugField,
-    string: StringField,
-  };
+export const FIELDS: Record<
+  Field['type'],
+  new (field: FieldConfig & any) => Field
+> = {
+  array: ArrayField,
+  boolean: BooleanField,
+  date: DateField,
+  datetime: DatetimeField,
+  file: FileField,
+  image: ImageField,
+  number: NumberField,
+  object: ObjectField,
+  reference: ReferenceField,
+  richtext: RichtextField,
+  slug: SlugField,
+  string: StringField,
+};

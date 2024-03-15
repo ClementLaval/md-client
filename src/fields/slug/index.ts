@@ -1,4 +1,4 @@
-import { FieldConfig } from '../types';
+import { OmitConfig } from '../types';
 import { BaseField } from '../base';
 import vine from '@vinejs/vine';
 
@@ -6,7 +6,7 @@ export class SlugField extends BaseField {
   public readonly type = 'slug';
   public readonly parse: (data: any) => Promise<string>;
 
-  constructor(config: FieldConfig) {
+  constructor(config: OmitConfig<SlugField>) {
     super(config);
     this.parse = this._parse;
   }

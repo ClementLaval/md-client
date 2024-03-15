@@ -1,4 +1,4 @@
-import { FieldConfig } from '../types';
+import { FieldConfig, OmitConfig } from '../types';
 import { BaseField } from '../base';
 import { Document } from '../../documents';
 import vine from '@vinejs/vine';
@@ -10,13 +10,13 @@ export class ReferenceField extends BaseField {
   public readonly parse: (data: any) => Promise<string>;
   public to: Document['name'][];
 
-  constructor(config: FieldConfig) {
+  constructor(config: OmitConfig<ReferenceField>) {
     super(config);
     this.parse = this._parse;
     this.to = this._to(config);
   }
 
-  private async _parse(data: any): Promise<string> {
+  private async _parse(data: unknown): Promise<string> {
     const schema = vine.any();
     return await vine.validate({ schema, data });
   }

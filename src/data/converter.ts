@@ -17,7 +17,7 @@ export const converter = async (
   document: Document,
   format: Format
 ): Promise<Data> => {
-  let data = await format.execute(relativePath);
+  let data = await format.execute(relativePath, document);
 
   data = _1Meta(data, relativePath, document);
 

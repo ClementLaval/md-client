@@ -83,7 +83,9 @@ export const objectFields: DataConfig['field'][] = [
 describe('getDataField', () => {
   test('should return full fields config from home page', () => {
     const document = new Collection(page);
-    const result = objectPaths.map((path) => getDataField(document, path));
+    const result = objectPaths.map((path) =>
+      getDataField(document, 'content/pages/home', path)
+    );
     const expected = objectFields;
     expect(JSON.stringify(result)).toEqual(JSON.stringify(expected));
   });
@@ -96,6 +98,6 @@ describe('getDataField', () => {
       type: 'string',
     });
 
-    expect(getDataField(document, path)).toEqual(result);
+    expect(getDataField(document, 'content/pages/home', path)).toEqual(result);
   });
 });

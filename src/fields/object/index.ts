@@ -1,4 +1,4 @@
-import { Field, FieldConfig } from '../types';
+import { Field, FieldConfig, OmitConfig } from '../types';
 import { BaseField } from '../base';
 import { FieldFactory } from '../FieldFactory';
 import vine from '@vinejs/vine';
@@ -7,9 +7,9 @@ import { StringField } from '../string';
 export class ObjectField extends BaseField {
   public readonly type = 'object';
   public readonly parse: (data: any) => Promise<Object>;
-  public fields: Field[];
+  public fields: FieldConfig[];
 
-  constructor(config: FieldConfig) {
+  constructor(config: OmitConfig<ObjectField>) {
     super(config);
     this.parse = this._parse;
     this.fields = [
@@ -25,12 +25,12 @@ export class ObjectField extends BaseField {
     ];
   }
 
-  private async _parse(data: any): Promise<Object> {
+  private async _parse(data: unknown): Promise<Object> {
     const schema = vine.record(vine.any());
     return await vine.validate({ schema, data });
   }
 
-  private _fields(config: FieldConfig): Field[] {
+  private _fields(config: OmitConfig<ObjectField>): Field[] {
     return config.type === 'object'
       ? config.fields.map((field) => FieldFactory.build(field))
       : [];

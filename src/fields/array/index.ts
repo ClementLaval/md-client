@@ -1,4 +1,4 @@
-import { Field, FieldConfig } from '../types';
+import { Field, FieldConfig, OmitConfig } from '../types';
 import { BaseField } from '../base';
 import { FieldFactory } from '../FieldFactory';
 import vine from '@vinejs/vine';
@@ -6,15 +6,15 @@ import vine from '@vinejs/vine';
 export class ArrayField extends BaseField {
   public readonly type = 'array';
   public readonly parse: (data: any) => Promise<any[]>;
-  public readonly of: Field[];
+  public readonly of: FieldConfig[];
 
-  constructor(config: FieldConfig) {
+  constructor(config: OmitConfig<ArrayField>) {
     super(config);
     this.parse = this._parse;
     this.of = this._of(config);
   }
 
-  private async _parse(data: any): Promise<any[]> {
+  private async _parse(data: unknown): Promise<any[]> {
     const schema = vine.array(vine.any());
     return await vine.validate({ schema, data });
   }

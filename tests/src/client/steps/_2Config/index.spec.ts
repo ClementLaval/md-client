@@ -157,7 +157,11 @@ export const _2Result: DataConfig[] = [
 ];
 describe('_2Config', () => {
   test('should retrieve config for each field', () => {
-    const result = _2Config(_1MetaResult, new Collection(page));
+    const result = _2Config(
+      _1MetaResult,
+      'content/pages/home',
+      new Collection(page)
+    );
     expect(JSON.stringify(result)).toEqual(JSON.stringify(_2Result));
   });
 });
